@@ -1,0 +1,31 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    nacos:
+      server-addr: 192.168.168.128:8848
+    sentinel:
+      transport:
+        dashboard: 192.168.168.128:8080
+        port: 10001
+    gateway:
+      routes:
+        - id: order-service
+          uri: lb://order-service
+          order: 1
+          predicates:
+            - Path=/order-server/**
+          filters:
+            - StripPrefix=1
+      discovery:
+        locator:
+          enabled: true
+
+# 控制台输出sql、下划线转驼峰
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
