@@ -11,6 +11,7 @@
         <module name="user-service" />
         <module name="common-service" />
         <module name="video-service" />
+        <module name="user-servcie" />
       </profile>
     </annotationProcessing>
   </component>
